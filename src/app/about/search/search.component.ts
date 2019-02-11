@@ -14,26 +14,32 @@ import { JsonConvert } from 'json2typescript';
 })
 export class SearchComponent implements OnInit {
 
-  results: Observable<any[]>;
-  loading: boolean;
+  results$: Observable<any[]>;
+  isFound: boolean = false;
   searchField: FormControl = new FormControl();
   constructor(private searchService: SearchService) { }
 
   ngOnInit() {
 
-    this.results = this.searchField.valueChanges
+    this.results$ = this.searchField.valueChanges
       .pipe(
-        filter((value: string) => value && value.length > 0),
+        //filter((value: string) => value && value.length > 0),
         debounceTime(0),
         distinctUntilChanged(),
-        tap(() => this.loading = true),
         switchMap(value => this.searchService.search(value)),
         map(
           result => {
-            return result.suggest.employeeSuggest[0].options;
+            if (result != null && result.suggest != null && result.suggest.employeeSuggest != null &&
+              result.suggest.employeeSuggest[0].options != null && result.suggest.employeeSuggest[0].options.length > 0) {
+              return result.suggest.employeeSuggest[0].options;
+            } else {
+              new Observable<any[]>();
+            }
+
           }
-        ),
-        tap(() => this.loading = false)
+        )
       );
+
+
   }
 }

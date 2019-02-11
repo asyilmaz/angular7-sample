@@ -3,7 +3,6 @@ import { Observable, throwError, pipe } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SearchRequest } from 'src/app/about/search/searchrequest';
-import { JsonConvert, JsonConverter } from 'json2typescript';
 
 
 @Injectable({

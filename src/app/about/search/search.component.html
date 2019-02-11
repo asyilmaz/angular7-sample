@@ -3,13 +3,16 @@
     <input [formControl]="searchField" type="text" id="keyword" class="form-control" autocomplete="off"
       placeholder="Search something..." autofocus />
   </div>
-  <div *ngIf="(results | async); else loading;" class="searchList">
-    <div *ngIf="results?.length > 0; else noItems;">
-      <a class="dropdown-item" *ngFor="let result of (results | async)">
-        {{result._source.name}} {{result._source.lastName}}
-      </a>
-    </div>
-    <ng-template #noItems> Not found </ng-template>
+  <div *ngIf="results$ | async;let resultList">
+    <div *ngIf="resultList.length>0;then foundTmp else notFoundTmp"></div>
+    <ng-template #notFoundTmp></ng-template>
+    <ng-template #foundTmp>
+      <div class="searchList">
+        <a class="dropdown-item" *ngFor="let result of resultList">
+          {{result._source.name}} {{result._source.lastName}}
+        </a>
+      </div>
+    </ng-template>
   </div>
-  <ng-template #loading> <span>Loading</span> </ng-template>
+
 </section>

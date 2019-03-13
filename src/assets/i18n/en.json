@@ -1,0 +1,15 @@
+{
+    "NavBar":{
+        "Home" : "Home",
+        "About" : "About",
+        "ContactUs" : "Contact Us",
+        "Languages": {
+            "en": "English",
+            "tr": "Turkish"
+        },
+        "SELECT_LANGUAGE" : "Language"
+    },
+    "HOME":{
+        "USERS":"Users"
+    }
+}

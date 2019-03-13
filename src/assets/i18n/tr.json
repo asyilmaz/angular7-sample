@@ -1,0 +1,15 @@
+{
+    "NavBar": {
+        "Home": "Ana Sayfa",
+        "About": "Hakkında",
+        "ContactUs": "İletişim",
+        "Languages": {
+            "en": "İngilizce",
+            "tr": "Türkçe"
+        },
+        "SELECT_LANGUAGE" : "Dil"
+    },
+    "HOME":{
+        "USERS":"Kullanıcılar"
+    }
+}

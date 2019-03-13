@@ -3,13 +3,11 @@
     <a routerLink="/" class="logo">{{ appTitle }}</a>
     <nav>
       <ul>
-        <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="./about">About</a></li>
-        <li><a routerLink="./contact">Contact us</a></li>
+        <li><a routerLink="/" [translate]="'NavBar.Home'"></a></li>
+        <li><a routerLink="./about" translate>NavBar.About</a></li>
+        <li><a routerLink="./contact">{{ 'NavBar.ContactUs' | translate }}</a></li>
+        <li><comp-langselect></comp-langselect></li>
       </ul>
-      <select #langSelect>
-
-      </select>
     </nav>
   </div>
 </header>

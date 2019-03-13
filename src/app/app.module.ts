@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,9 @@ import { ModalComponent } from './modal/modal.component';
 import { VideoComponent } from './video/video.component';
 import { SearchComponent } from './about/search/search.component';
 import { SearchService } from './about/search/search.service';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LangselectComponent } from './nav/langselect/langselect.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +26,22 @@ import { SearchService } from './about/search/search.service';
     AboutComponent,
     ModalComponent,
     VideoComponent,
-    SearchComponent
+    SearchComponent,
+    LangselectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [SearchService],
   entryComponents: [
@@ -40,3 +51,6 @@ import { SearchService } from './about/search/search.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

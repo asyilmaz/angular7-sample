@@ -1,0 +1,8 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ 'NavBar.SELECT_LANGUAGE' | translate }}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" *ngFor="let lang of languages" (click)="changeLang(lang.code)">{{lang.name}}</a>
+  </div>
+</div>
